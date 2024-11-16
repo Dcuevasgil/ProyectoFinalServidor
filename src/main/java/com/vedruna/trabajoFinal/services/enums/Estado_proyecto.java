@@ -1,10 +1,12 @@
-package com.vedruna.trabajoFinal.persistance.models;
+package com.vedruna.trabajoFinal.services.enums;
 
 import java.sql.Date;
 import java.util.Set;
 
+import com.vedruna.trabajoFinal.persistance.models.Desarrollador;
+import com.vedruna.trabajoFinal.persistance.models.Tecnologia;
+
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,18 +14,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
-@Table(name = "projects")
-public class Proyecto {
-
-    private Estado_proyecto estado;
+public enum Estado_proyecto {
+    IN_DEVELOPMENT,
+    IN_PRODUCTION,
+    TESTING;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
