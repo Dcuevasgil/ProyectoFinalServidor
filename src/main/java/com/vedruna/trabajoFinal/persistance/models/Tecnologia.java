@@ -11,8 +11,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,15 +27,10 @@ public class Tecnologia {
     private Integer id_tecnologia;
 
     @Column(name = "tech_name")
-    @NotNull(message = "El nombre de la tecnologia no puede ser nulo")
-    @Size(min = 5, max = 30)
+    @NotBlank(message = "El nombre de la tecnologia no puede estar vacío ni ser nulo")
     private String nombre_tecnologia;
 
     @ManyToMany
-    @JoinTable(name = "technologies_used_in_projects", // Tabla intermedia
-        joinColumns = @JoinColumn(name = "technologies_tech_id", referencedColumnName = "tech_id"),
-        inverseJoinColumns = @JoinColumn(name = "projects_project_id", referencedColumnName = "project_id")
-    )
+    @JoinTable(name = "technologies_used_in_projects", joinColumns = @JoinColumn(name = "technologies_tech_id", referencedColumnName = "tech_id"), inverseJoinColumns = @JoinColumn(name = "projects_project_id", referencedColumnName = "project_id"))
     private List<Proyecto> proyectos;
-    
 }
